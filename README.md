@@ -9,7 +9,7 @@ This is just a script I wrote for my own use, but I figured I should put it here
 
 2. Put the script file in `/usr/local/bin` or anywhere in your `$PATH`
 
-3. Make sure the script has the permission to be executed by
+3. Make sure the script has the permission to be executed by running
    ```
    $ chmod a+x coltab
    ```
