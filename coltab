@@ -34,7 +34,7 @@ def get_snippet(code, margin_count, padding_count, pad_char=' '):
 @click.option('-p', '--no-pointer', is_flag=True, help='Stop showing arrow pointer to the main color snippet.')
 @click.option('-h', '--help', 'show_help', is_flag=True, help='Show this message and exit.')
 def show_snippets(color_code, neighbors, no_pointer, show_help):
-    """A simple script to display samples of 8-bit colors available in most terminals."""
+    """A simple python script to display samples of 8-bit colors available in most terminals."""
     if show_help:
         ctx = click.get_current_context()
         click.echo(ctx.get_help())

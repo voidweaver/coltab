@@ -1,7 +1,9 @@
-# coltab
-A simple script to display samples of 8-bit colors available in most terminals.
+# Coltab
+A simple python script to display samples of 8-bit colors available in most terminals.
+
 # About
 This is just a script I wrote for my own use, but I figured I should put it here as well.
+
 # Installation
 1. Download the python file or clone this repository
 
