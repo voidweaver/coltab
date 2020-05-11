@@ -9,7 +9,7 @@ This is just a script I wrote for my own use, but I figured I should put it here
 
 2. Put the script file in `/usr/local/bin` or anywhere in your `$PATH`
 
-3. Make sure [Python 3](https://www.python.org/) is installed with pip3
+3. Make sure [Python 3](https://www.python.org/) and pip3 is installed
    ```
    $ python3 --version
    Python 3.x.x
