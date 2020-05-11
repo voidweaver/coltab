@@ -27,6 +27,23 @@ def get_snippet(code, margin_count, padding_count, pad_char=' '):
 
     return "\033[38;5;%dm\033[48;5;%dm%s%s%s\033[0m" % (fg_code, code, margin, code_string, margin)
 
+def is_valid_range(string):
+    if string.isnumeric():
+        return True
+    else:
+        if string.find('-') > 0:
+            numbers = string.split('-')
+            if len(numbers) != 2:
+                return False
+            for n in numbers:
+                if not n.isnumeric():
+                    return False
+            return True
+        else:
+            return False
+
+def range_to_tuple(string):
+    return tuple(int(n) for n in string.split('-'))
 
 @click.command()
 @click.argument('color-code', required=False)
@@ -43,14 +60,27 @@ def show_snippets(color_code, neighbors, no_pointer, show_help):
     _, columns = os.popen('stty size', 'r').read().split()
     columns = int(columns)
 
-    if color_code and color_code.isnumeric() and 0 <= int(color_code) and int(color_code) < 256:
-        color_code = int(color_code)
-        size = len(str(color_code + neighbors))
-
+    if color_code and is_valid_range(color_code):
+        code_tuple = range_to_tuple(color_code)
         pointer = '\033[1m\033[38;5;9m<----\033[0m'
-        for i in range(-neighbors, neighbors + 1):
-            snippet = get_snippet(color_code + i, 3, size, '0')
-            if i == 0:
+
+        is_range = False if len(code_tuple) == 1 else True
+
+        if len(code_tuple) == 1:
+            code_tuple = (code_tuple[0] - neighbors, code_tuple[0] + neighbors)
+        else:
+            code_tuple = (min(code_tuple) - neighbors, max(code_tuple) + neighbors)
+
+        middle = code_tuple[0] + int((code_tuple[1] - code_tuple[0]) / 2)
+        size = len(str(code_tuple[1]))
+
+        code_tuple = (code_tuple[0], code_tuple[1] + 1)
+
+        for color_code in range(*code_tuple):
+            if color_code < 0 or color_code > 255:
+                continue
+            snippet = get_snippet(color_code, 3, size, '0')
+            if color_code == middle and not is_range:
                 if no_pointer or neighbors < 3:
                     print('\033[1m' + snippet)
                 else:
