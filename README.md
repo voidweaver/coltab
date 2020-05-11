@@ -1,5 +1,5 @@
 # coltab
-A simple python script to display samples of 8-bit colors available in most terminals.
+**coltab** (shortened from **col**or **tab**le) &mdash; A simple python script to display samples of 8-bit colors available in most terminals.
 
 # About
 This is just a script I wrote for my own use, but I figured I should put it here as well.
